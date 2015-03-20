@@ -1,0 +1,45 @@
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+Obj/
+UnityGenerated/
+Library/
+Assets/AssetStoreTools*
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+C:\Users\NakOh\Documents\SourceTree\2015UnityStudy\Study_Project/Temp/
+ C:\Users\NakOh\Documents\SourceTree\2015UnityStudy\Study_Project/Library/
+C:\Users\NakOh\Documents\SourceTree\2015UnityStudy\Study_Project/Obj/
+ 
+ *.csproj
+ *.unityproj
+ *.sln
+ *.user
+ *.userprefs
+ *.DS_store
