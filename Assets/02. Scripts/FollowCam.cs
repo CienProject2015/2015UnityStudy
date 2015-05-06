@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class FollowCam : MonoBehaviour
@@ -9,6 +9,7 @@ public class FollowCam : MonoBehaviour
 	public float height = 5.0f;
 	public float dampRotate = 5.0f;
 	private Transform tr;
+
 
 	// Use this for initialization
 	void Start ()

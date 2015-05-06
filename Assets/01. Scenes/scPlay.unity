@@ -609,6 +609,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405b9e0ec1efb1c4eb41a675fdd8a1cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &584863343
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 407204, guid: 079a4fd27c9a9e0409234d7f7a7d3267, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407204, guid: 079a4fd27c9a9e0409234d7f7a7d3267, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 407204, guid: 079a4fd27c9a9e0409234d7f7a7d3267, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407204, guid: 079a4fd27c9a9e0409234d7f7a7d3267, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407204, guid: 079a4fd27c9a9e0409234d7f7a7d3267, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407204, guid: 079a4fd27c9a9e0409234d7f7a7d3267, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 407204, guid: 079a4fd27c9a9e0409234d7f7a7d3267, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 407204, guid: 079a4fd27c9a9e0409234d7f7a7d3267, type: 2}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 079a4fd27c9a9e0409234d7f7a7d3267, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &606823522
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,7 +720,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400064, guid: 114cb4bcf81314b65b611fcc4f346ee1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 400064, guid: 114cb4bcf81314b65b611fcc4f346ee1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -792,6 +834,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d3d2678949d58f4496fe1b0b4363742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodEffect: {fileID: 100004, guid: 1eade989a94acff43aa1549fbdbb471e, type: 2}
+  bloodDecal: {fileID: 199118, guid: 079a4fd27c9a9e0409234d7f7a7d3267, type: 2}
+  monsterState: 2
+  traceDist: 10
+  attackDist: 2
+--- !u!136 &760419061
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 760419056}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &797963702
 Prefab:
   m_ObjectHideFlags: 0
@@ -1072,7 +1132,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1328713980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 0, z: 0}
+  m_LocalPosition: {x: 9, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 814013551}
