@@ -5,16 +5,18 @@ public class PlayerCtrl : MonoBehaviour
 {
 	private float h = 0.0f;
 	private float v = 0.0f;
-
 	private Transform tr;
 	public float moveSpeed = 10.0f;
-
 	public float rotSpeed = 100.0f;
-
 	public int hp = 100;
 
+	public delegate void PlayerDieHandler ();
+
+	public static event PlayerDieHandler OnPlayerDie;
+
 	[System.Serializable]
-	public class Anim{
+	public class Anim
+	{
 		public AnimationClip idle;
 		public AnimationClip runForward;
 		public AnimationClip runBackward;
@@ -23,7 +25,6 @@ public class PlayerCtrl : MonoBehaviour
 	}
 
 	public Anim anim;
-
 	public Animation _animation;
 	// Use this for initialization
 	void Start ()
@@ -47,40 +48,35 @@ public class PlayerCtrl : MonoBehaviour
 
 		tr.Rotate (Vector3.up * Time.deltaTime * rotSpeed * Input.GetAxis ("Mouse X"));
 
-		if (v >= 0.1f)
-		{
+		if (v >= 0.1f) {
 			_animation.CrossFade (anim.runForward.name, 0.3f);
-		}
-		else if( v <= -0.1f)
-		{
+		} else if (v <= -0.1f) {
 			_animation.CrossFade (anim.runBackward.name, 0.3f);
-		}
-		else if( h>= 0.1f)
-		{
+		} else if (h >= 0.1f) {
 			_animation.CrossFade (anim.runRight.name, 0.3f);
-		}
-		else if( h <= -0.1f)
-		{
-			_animation.CrossFade(anim.runLeft.name, 0.3f);
+		} else if (h <= -0.1f) {
+			_animation.CrossFade (anim.runLeft.name, 0.3f);
 
-		}
-		else
-		{
+		} else {
 			_animation.CrossFade (anim.idle.name, 0.3f);
 		}
 	}
-	void OnTriggerEnter(Collider coll){
+
+	void OnTriggerEnter (Collider coll)
+	{
 		if (coll.gameObject.tag == "PUNCH") {
 			hp -= 10;
 			Debug.Log ("Player HP = " + hp.ToString ());
 
-			if( hp <= 0){
-				PlayerDie();
+			if (hp <= 0) {
+				//PlayerDie();
+				OnPlayerDie ();
 			}
 		}
 	}
 
-	void PlayerDie(){
+	void PlayerDie ()
+	{
 		Debug.Log ("Player Die !!");
 		GameObject[] monsters = GameObject.FindGameObjectsWithTag ("MONSTER");
 		foreach (GameObject monster in monsters) {

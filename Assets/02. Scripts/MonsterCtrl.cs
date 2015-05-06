@@ -20,6 +20,7 @@ public class MonsterCtrl : MonoBehaviour
 	public float attackDist = 2.0f;
 	private bool isDie = false;
 	private Animator _animator;
+	private int hp = 100;
 	// Use this for initialization
 	void Start ()
 	{
@@ -30,6 +31,16 @@ public class MonsterCtrl : MonoBehaviour
 
 		StartCoroutine (this.CheckMonsterState ());
 		StartCoroutine (this.MonsterAction ());
+	}
+
+	void OnEnabel ()
+	{
+		PlayerCtrl.OnPlayerDie += this.OnPlayerDie;
+	}
+
+	void OnDisable ()
+	{
+		PlayerCtrl.OnPlayerDie -= this.OnPlayerDie;
 	}
 
 	// Update is called once per frame
@@ -79,30 +90,50 @@ public class MonsterCtrl : MonoBehaviour
 
 	}
 
-	void OnCollisionEnter(Collision coll){
+	void OnCollisionEnter (Collision coll)
+	{
 		if (coll.gameObject.tag == "BULLET") {
-			StartCoroutine (this.CreateBloodEffect(coll.transform.position));
+			StartCoroutine (this.CreateBloodEffect (coll.transform.position));
+			hp -= coll.gameObject.GetComponent<BulletCtrl> ().damage;
+			if (hp <= 0) {
+				MonsterDie ();
+			}
 			Destroy (coll.gameObject);
 			_animator.SetTrigger ("IsHit");
 		}
 	}
 
-	IEnumerator CreateBloodEffect(Vector3 pos){
+	void MonsterDie ()
+	{
+		StopAllCoroutines ();
+		isDie = true;
+		monsterState = MonsterState.die;
+		nvAgent.Stop ();
+		_animator.SetTrigger ("IsDie");
+
+		gameObject.GetComponentInChildren<CapsuleCollider> ().enabled = false;
+		foreach (Collider coll in gameObject.GetComponentsInChildren<SphereCollider>()) {
+			coll.enabled = false;
+		}
+	}
+
+	IEnumerator CreateBloodEffect (Vector3 pos)
+	{
 
 		GameObject _blood1 = (GameObject)Instantiate (bloodEffect, pos, Quaternion.identity);
 		Destroy (_blood1, 2.0f);
 
 		Vector3 decalPos = monsterTr.position + (Vector3.up * 0.01f);
-		Quaternion decalRot = Quaternion.Euler (0, Random.Range (0,360), 0);
+		Quaternion decalRot = Quaternion.Euler (0, Random.Range (0, 360), 0);
 
-		GameObject _blood2 = (GameObject) Instantiate(bloodDecal, decalPos, decalRot);
+		GameObject _blood2 = (GameObject)Instantiate (bloodDecal, decalPos, decalRot);
 		float _scale = Random.Range (1.5f, 3.5f);
 		_blood2.transform.localScale = new Vector3 (_scale, 1, _scale);
 
 		yield return null;
 	}
 
-	void OnPlayerDie()
+	void OnPlayerDie ()
 	{
 		StopAllCoroutines ();
 		nvAgent.Stop ();
