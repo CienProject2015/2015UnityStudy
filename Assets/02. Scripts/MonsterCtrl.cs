@@ -101,4 +101,13 @@ public class MonsterCtrl : MonoBehaviour
 
 		yield return null;
 	}
+
+	void OnPlayerDie()
+	{
+		StopAllCoroutines ();
+		nvAgent.Stop ();
+		_animator.SetTrigger ("IsPlayerDie");
+	}
+
+
 }
