@@ -21,6 +21,7 @@ public class MonsterCtrl : MonoBehaviour
 	private bool isDie = false;
 	private Animator _animator;
 	private int hp = 100;
+	private GameUI gameUI;
 	// Use this for initialization
 	void Start ()
 	{
@@ -28,6 +29,7 @@ public class MonsterCtrl : MonoBehaviour
 		playerTr = GameObject.FindWithTag ("Player").GetComponent<Transform> ();
 		nvAgent = this.gameObject.GetComponent<NavMeshAgent> ();
 		_animator = this.gameObject.GetComponent<Animator> ();
+		gameUI = GameObject.Find ("GameUI").GetComponent<GameUI> ();
 
 		StartCoroutine (this.CheckMonsterState ());
 		StartCoroutine (this.MonsterAction ());
@@ -115,6 +117,7 @@ public class MonsterCtrl : MonoBehaviour
 		foreach (Collider coll in gameObject.GetComponentsInChildren<SphereCollider>()) {
 			coll.enabled = false;
 		}
+		gameUI.DispScore (50);
 	}
 
 	IEnumerator CreateBloodEffect (Vector3 pos)
