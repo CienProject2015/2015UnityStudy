@@ -107,6 +107,7 @@ public class MonsterCtrl : MonoBehaviour
 
 	void MonsterDie ()
 	{
+		GameObject.tag = "Untagged";
 		StopAllCoroutines ();
 		isDie = true;
 		monsterState = MonsterState.die;

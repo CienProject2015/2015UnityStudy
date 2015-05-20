@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerCtrl : MonoBehaviour
@@ -9,6 +10,8 @@ public class PlayerCtrl : MonoBehaviour
 	public float moveSpeed = 10.0f;
 	public float rotSpeed = 100.0f;
 	public int hp = 100;
+	private int initHp;
+	private Image imgHpbar;
 
 	public delegate void PlayerDieHandler ();
 
@@ -29,6 +32,7 @@ public class PlayerCtrl : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		initHp = hp;
 		tr = GetComponent<Transform> ();
 		_animation = GetComponentInChildren<Animation> ();
 		_animation.clip = anim.idle;
@@ -66,6 +70,8 @@ public class PlayerCtrl : MonoBehaviour
 	{
 		if (coll.gameObject.tag == "PUNCH") {
 			hp -= 10;
+
+			imgHpbar.fillAmount = (float) hp/ (float) initHp;
 			Debug.Log ("Player HP = " + hp.ToString ());
 
 			if (hp <= 0) {
