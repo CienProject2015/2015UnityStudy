@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BULLET
   - Fire
+  - MONSTER
   layers:
   - Default
   - TransparentFX
